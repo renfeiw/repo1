@@ -1,0 +1,61 @@
+name: "auto exclude"
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  autoExclude:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.comment.body, 'auto exclude test') && github.event_name != 'pull_request'
+    steps:
+      - name: comment
+        run: echo "${{ github.event.comment.body }}"
+      - name: comment
+        run: echo ${{ github.event.comment.user.login }}
+      - name: comment
+        run: echo ${{ github.event.comment.issue_url }}
+      - name: comment
+        run: echo "${{ github.event.comment.body }}"
+      - name: token
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "$GITHUB_TOKEN"
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: default python version
+        run: |
+          python -V
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest gitPython
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: check python version
+        run: |
+          python -V
+      - uses: actions/checkout@v2
+      - name: run disabled
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --list
+          echo ${{ secrets.GITHUB_TOKEN }}
+          python disable.py -m disable -t "algotest22" -i "123456" -a ${{ github.token }} -u github-actions -e github-actions@github.com
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
