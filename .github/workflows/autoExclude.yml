@@ -49,20 +49,24 @@ jobs:
       - name: check python version
         run: |
           python -V
-      - uses: actions/checkout@v2
-      - name: run disabled
+      - name: checkout current repo
+        uses: actions/checkout@v2
+        with:
+          path: 'tests'
+      - name: checkout TKG repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'https://github.com/renfeiw/TKG.git'
+          path: 'TKG'
+      - name: run auto disabled script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --list
           echo ${{ secrets.GITHUB_TOKEN }}
-          python disable.py -m disable -t "algotest2" -i "123456" -a ${{ github.token }} -u github-actions -e github-actions@github.com
+          python TKG/scripts/autoDisable/disable.py -t ${{ github.event.comment.body }} -i ${{ github.event.comment.issue_url }} -r $GITHUB_WORKSPACE/tests
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
-      - name: trigger myrepo
-        run: |
-          curl \
-            -X POST \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/renfeiw/myrepo/dispatches \
-            -d '{"event_type":"disable_test"}'
+          with:
+            path: 'tests'
+            commit-message: 'AUTO: ${{ github.event.comment.issue_url }}\nrelated issue: ${{ github.event.comment.issue_url }}\nfyi@${{ github.event.comment.user.login }}'
