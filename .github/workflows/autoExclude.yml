@@ -1,4 +1,4 @@
-name: "auto exclude"
+name: "Auto exclude"
 on:
   issue_comment:
     types: [created]
@@ -25,11 +25,8 @@ jobs:
           ref: 'master'
           path: 'TKG'
       - name: run auto disabled script
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --list
-          echo ${{ secrets.GITHUB_TOKEN }}
           python TKG/scripts/autoDisable/disable.py -m "${{ github.event.comment.body }}" -i "${{ github.event.comment.html_url }}" -d "$GITHUB_WORKSPACE/tests"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
@@ -37,13 +34,12 @@ jobs:
           path: 'tests'
           title: '${{ github.event.comment.body }}'
           body: |
-            related issue: : ${{ github.event.comment.html_url }}
-            fyi @${{ github.event.comment.user.login }}
+            related: ${{ github.event.comment.html_url }}
+            triggered by @${{ github.event.comment.user.login }}
           commit-message: |
             AUTO: ${{ github.event.comment.body }}
-            - related issue: ${{ github.event.comment.html_url }}
-            - triggered by @${{ github.event.comment.user.login }}
+            - related: ${{ github.event.comment.html_url }}
           branch: 'autoExclude'
-          branch-suffix: 'timestamp'
+          branch-suffix: 'short-commit-hash'
           delete-branch: 'true'
           signoff: 'true'
