@@ -37,11 +37,11 @@ jobs:
           path: 'tests'
           title: '${{ github.event.comment.body }}'
           body: |
-            related issue: : ${{ github.event.comment.html_url }}
+            related comment: ${{ github.event.comment.html_url }}
             fyi @${{ github.event.comment.user.login }}
           commit-message: |
             AUTO: ${{ github.event.comment.body }}
-            - related issue: ${{ github.event.comment.html_url }}
+            - related comment: ${{ github.event.comment.html_url }}
             - triggered by @${{ github.event.comment.user.login }}
           branch: 'autoExclude'
           branch-suffix: 'timestamp'
