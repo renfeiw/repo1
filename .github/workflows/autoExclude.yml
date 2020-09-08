@@ -67,6 +67,6 @@ jobs:
           python TKG/scripts/autoDisable/disable.py -t ${{ github.event.comment.body }} -i ${{ github.event.comment.issue_url }} -r $GITHUB_WORKSPACE/tests
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
-          with:
-            path: 'tests'
-            commit-message: 'AUTO: ${{ github.event.comment.issue_url }}\nrelated issue: ${{ github.event.comment.issue_url }}\nfyi@${{ github.event.comment.user.login }}'
+        with:
+          path: 'tests'
+          commit-message: 'AUTO: ${{ github.event.comment.issue_url }}\nrelated issue: ${{ github.event.comment.issue_url }}\nfyi@${{ github.event.comment.user.login }}'
