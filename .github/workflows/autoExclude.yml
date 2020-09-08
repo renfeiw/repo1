@@ -79,4 +79,5 @@ jobs:
             - related issue: ${{ github.event.comment.issue_url }}
           branch: 'autoExclude'
           branch-suffix: 'timestamp'
-          delete-branch: 'true'
+          delete-branch: True
+          signoff: 'true'
