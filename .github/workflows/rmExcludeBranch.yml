@@ -1,0 +1,13 @@
+name: "Remove exclude branch"
+on:
+  pull_request:
+    types: [closed]
+jobs:
+  autoExclude:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.pull_request.title, 'auto exclude test')
+    steps:
+      - name: check python version
+        run: |
+          echo ${{ github.event.ref }}
+          echo ${{ github.event.pull_request }}

@@ -37,13 +37,12 @@ jobs:
           path: 'tests'
           title: '${{ github.event.comment.body }}'
           body: |
-            related issue: : ${{ github.event.comment.html_url }}
-            fyi @${{ github.event.comment.user.login }}
+            related: ${{ github.event.comment.html_url }}
+            triggered by @${{ github.event.comment.user.login }}
           commit-message: |
             AUTO: ${{ github.event.comment.body }}
-            - related issue: ${{ github.event.comment.html_url }}
-            - triggered by @${{ github.event.comment.user.login }}
+            - related: ${{ github.event.comment.html_url }}
           branch: 'autoExclude'
-          branch-suffix: 'timestamp'
+          branch-suffix: 'short-commit-hash'
           delete-branch: 'true'
           signoff: 'true'
