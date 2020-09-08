@@ -71,7 +71,7 @@ jobs:
         with:
           path: 'tests'
           title: '${{ github.event.comment.body }}'
-          body: 'fyi@${{ github.event.comment.user.login }}'
+          body: 'fyi @${{ github.event.comment.user.login }}'
           commit-message: |
             AUTO: ${{ github.event.comment.body }}
             - related issue: ${{ github.event.comment.issue_url }}
