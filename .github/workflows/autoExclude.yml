@@ -65,7 +65,7 @@ jobs:
         run: |
           git config --list
           echo ${{ secrets.GITHUB_TOKEN }}
-          python TKG/scripts/autoDisable/disable.py -m "${{ github.event.comment.body }}" -i "${{ github.event.comment.html_url }}" -d "$GITHUB_WORKSPACE/tests"
+          python TKG/scripts/autoDisable/disable.py -m "${{ github.event.comment.body }}" -i "${{ github.event.issue.html_url }}" -d "$GITHUB_WORKSPACE/tests"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -77,5 +77,5 @@ jobs:
           commit-message: |
             AUTO: ${{ github.event.comment.body }}
             - related issue: ${{ github.event.comment.html_url }}
-          delete-branch: True
+          delete-branch: 'true'
           signoff: 'true'
