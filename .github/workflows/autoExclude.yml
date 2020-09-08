@@ -56,7 +56,7 @@ jobs:
       - name: checkout TKG repo
         uses: actions/checkout@v2
         with:
-          repository: 'https://github.com/renfeiw/TKG.git'
+          repository: 'https://github.com/AdoptOpenJDK/TKG.git'
           path: 'TKG'
       - name: run auto disabled script
         env:
