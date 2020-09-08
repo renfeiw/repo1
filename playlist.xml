@@ -24,6 +24,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 	<include>nativeTestSettings.mk</include>
 	<test>
 		<testCaseName>algotest2</testCaseName>
+		<disabled>123456</disabled>
 		<variations>
 			<variation>NoOptions</variation>
 		</variations>
@@ -46,6 +47,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 	</test>
 	<test>
 		<testCaseName>algotest2</testCaseName>
+		<disabled>123456</disabled>
 		<variations>
 			<variation>NoOptions</variation>
 		</variations>
