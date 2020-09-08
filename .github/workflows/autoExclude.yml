@@ -70,4 +70,9 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           path: 'tests'
-          commit-message: 'AUTO: ${{ github.event.comment.issue_url }}\nrelated issue: ${{ github.event.comment.issue_url }}\nfyi@${{ github.event.comment.user.login }}'
+          title: 'AUTO: ${{ github.event.comment.body }}'
+          commit-message: |
+            AUTO: ${{ github.event.comment.body }}
+            
+            - related issue: ${{ github.event.comment.issue_url }}
+            fyi@${{ github.event.comment.user.login }}
