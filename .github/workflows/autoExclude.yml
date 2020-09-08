@@ -56,6 +56,13 @@ jobs:
         run: |
           git config --list
           echo ${{ secrets.GITHUB_TOKEN }}
-          python disable.py -m disable -t "algotest22" -i "123456" -a ${{ github.token }} -u github-actions -e github-actions@github.com
+          python disable.py -m disable -t "algotest2" -i "123456" -a ${{ github.token }} -u github-actions -e github-actions@github.com
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
+      - name: trigger myrepo
+        run: |
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/renfeiw/myrepo/dispatches \
+            -d '{"event_type":"disable_test"}'
