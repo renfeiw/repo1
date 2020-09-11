@@ -24,6 +24,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 	<include>nativeTestSettings.mk</include>
 	<test>
 		<testCaseName>algotest2</testCaseName>
+		<disabled>https://github.com/renfeiw/repo1/issues/1#issuecomment-691246939</disabled>
 		<disabled>https://github.com/renfeiw/myrepo/issues/1</disabled>
 		<variations>
 			<variation>NoOptions</variation>
@@ -47,6 +48,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 	</test>
 	<test>
 		<testCaseName>algotest2</testCaseName>
+		<disabled>https://github.com/renfeiw/repo1/issues/1#issuecomment-691246939</disabled>
 		<disabled>https://github.com/renfeiw/myrepo/issues/1</disabled>
 		<variations>
 			<variation>NoOptions</variation>
