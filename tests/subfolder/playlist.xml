@@ -51,6 +51,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 	</test>
 	<test>
 		<testCaseName>algotest2</testCaseName>
+		<disabled>https://github.com/renfeiw/repo1/issues/30#issuecomment-697937711</disabled>
 		<variations>
 			<variation>NoOptions</variation>
 		</variations>
