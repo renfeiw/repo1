@@ -27,7 +27,7 @@ jobs:
       - name: run script
         run: |
           git config --list
-          python TKG/scripts/autoCommitter/disable.py -m "${{ github.event.comment.body }}" -i "${{ github.event.comment.html_url }}" -d "$GITHUB_WORKSPACE/tests"
+          python TKG/scripts/testBot/disable.py -m "${{ github.event.comment.body }}" -i "${{ github.event.comment.html_url }}" -d "$GITHUB_WORKSPACE/tests"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:

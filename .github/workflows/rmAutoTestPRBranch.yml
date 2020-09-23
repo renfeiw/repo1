@@ -3,10 +3,10 @@ on:
   pull_request:
     types: [closed]
 jobs:
-  rmExcludeBranch:
+  rmAutoTestPRBranch:
     runs-on: ubuntu-latest
     if: startsWith(github.event.pull_request.title, 'auto exclude test') && startsWith(github.event.pull_request.head.ref, 'autoTestPR') && (github.event.pull_request.user.login == 'github-actions[bot]')
     steps:
-      - name: remove auto exclude branch when PR is closed
+      - name: remove auto test PR branch when the PR is closed
         run: |
           curl -u github-actions:${{ secrets.GITHUB_TOKEN }} -X DELETE ${{ github.event.pull_request.head.repo.url }}/git/refs/heads/${{ github.event.pull_request.head.ref }}
