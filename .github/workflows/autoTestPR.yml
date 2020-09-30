@@ -27,7 +27,8 @@ jobs:
       - name: run script
         run: |
           git config --list
-          python TKG/scripts/testBot/disable.py -m "${{ github.event.comment.body }}" -i "${{ github.event.comment.html_url }}" -d "$GITHUB_WORKSPACE/tests"
+          python TKG/scripts/testBot/disable.py -m "${{ github.event.comment.body }}" -i "${{ github.event.comment.html_url }}" -d "$GITHUB_WORKSPACE/tests"; \
+          if [ "$?" -ne "0" ]; then  curl -u github-actions:${{ secrets.GITHUB_TOKEN }} -d '{ "body":  "Cannot find the specified test to exclude, please double check." }' -X POST ${{ github.event.issue.comments_url }}; false; fi
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
