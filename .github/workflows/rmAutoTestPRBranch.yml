@@ -5,7 +5,7 @@ on:
 jobs:
   rmAutoTestPRBranch:
     runs-on: ubuntu-latest
-    if: startsWith(github.event.pull_request.title, 'auto exclude test') && startsWith(github.event.pull_request.head.ref, 'autoTestPR') && (github.event.pull_request.user.login == 'github-actions[bot]')
+    if: startsWith(github.event.pull_request.title, 'auto exclude test') && startsWith(github.event.pull_request.head.ref, 'autoTestPR') && (github.event.pull_request.user.login == 'github-actions[bot]') && contains(github.event.pull_request.labels, 'test excluded')
     steps:
       - name: remove auto test PR branch when the PR is closed
         run: |

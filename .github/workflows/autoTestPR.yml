@@ -24,8 +24,8 @@ jobs:
       - name: checkout TKG repo
         uses: actions/checkout@v2
         with:
-          repository: 'renfeiw/TKG.git'
-          ref: 'disabled2'
+          repository: 'AdoptOpenJDK/TKG.git'
+          ref: 'master'
           path: 'TKG'
       - name: run script
         run: |
@@ -34,7 +34,7 @@ jobs:
       - name: test cannot be found
         if: failure()
         run: |
-          curl -u github-actions:${{ secrets.GITHUB_TOKEN }} -d '{ "body":  "The specified exclude test cannot be disabled. Action run: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" }' -X POST ${{ github.event.issue.comments_url }}
+          curl -u github-actions:${{ secrets.GITHUB_TOKEN }} -d '{ "body":  "The specified test cannot be excluded. Action run: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" }' -X POST ${{ github.event.issue.comments_url }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -43,9 +43,12 @@ jobs:
           body: |
             related: ${{ github.event.comment.html_url }}
             triggered by @${{ github.event.comment.user.login }}
+            [ci skip]
           commit-message: |
             AUTO: ${{ github.event.comment.body }}
             - related: ${{ github.event.comment.html_url }}
+          labels: |
+            test excluded
           branch: 'autoTestPR'
           branch-suffix: 'random'
           signoff: 'true'
