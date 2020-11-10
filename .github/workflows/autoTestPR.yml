@@ -14,6 +14,9 @@ jobs:
       - name: check python version
         run: |
           python -V
+      - name: install xml module
+        run: |
+          pip install lxml
       - name: checkout current repo
         uses: actions/checkout@v2
         with:
