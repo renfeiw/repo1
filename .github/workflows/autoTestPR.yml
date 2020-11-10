@@ -34,7 +34,7 @@ jobs:
       - name: test cannot be found
         if: failure()
         run: |
-          curl -u github-actions:${{ secrets.GITHUB_TOKEN }} -d '{ "body":  "The specified exclude test cannot be disabled. Action run: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" }' -X POST ${{ github.event.issue.comments_url }}
+          curl -u github-actions:${{ secrets.GITHUB_TOKEN }} -d '{ "body":  "The specified test cannot be excluded. Action run: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" }' -X POST ${{ github.event.issue.comments_url }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
