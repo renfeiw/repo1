@@ -24,6 +24,12 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 	<include>nativeTestSettings.mk</include>
 	<test>
 		<testCaseName>TestInvtest</testCaseName>
+		<disabled>
+			<comment>https://github.com/renfeiw/repo1/issues/45#issuecomment-741888739</comment>
+			<variation>-Xjit</variation>
+			<subset>11</subset>
+			<impl>openj9</impl>
+		</disabled>
 		<command>cp -R $(TEST_JDK_HOME)/ $(REPORTDIR_NQ)/testJava; \
 		$(TEST_JAVA)/bin/java -version; \
 		extattr +a $(REPORTDIR_NQ)/testJava$(LIBJ9IFA29); \
