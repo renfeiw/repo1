@@ -24,13 +24,24 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 	<include>nativeTestSettings.mk</include>
 	<test>
 		<testCaseName>TestInvtest</testCaseName>
+		<disabled>
+			<comment>https://github.com/renfeiw/repo1/issues/45#issuecomment-753033307</comment>
+			<variation>-Xjit</variation>
+			<subset>11</subset>
+			<impl>openj9</impl>
+		</disabled>
 		<command>cp -R $(TEST_JDK_HOME)/ $(REPORTDIR_NQ)/testJava; \
 		$(TEST_JAVA)/bin/java -version; \
 		extattr +a $(REPORTDIR_NQ)/testJava$(LIBJ9IFA29); \
 		export LIBPATH=$(Q)$(PATH_TO_LIB):$(LIBPATH)$(Q); \
 		$(JAVA_SHARED_LIBRARIES_DIR)/invtest -Djava.home=$(TEST_JAVA)/ -Dibm.java9.forceCommonCleanerShutdown=true; \
 		$(TEST_STATUS); \
-		rm -rf $(REPORTDIR_NQ)/testJava</command>
+		rm -rf $(REPORTDIR_NQ)/testJava
+		</command>
+		<variations>
+			<variation>NoOptions</variation>
+			<variation>-Xjit</variation>
+		</variations>
 		<platformRequirements>os.zos</platformRequirements>
 		<levels>
 			<level>sanity</level>
