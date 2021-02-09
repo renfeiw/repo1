@@ -51,6 +51,11 @@
 	</test>
 	<test>
 		<testCaseName>renaissance-db-shootout</testCaseName>
+		<disabled>
+			<comment>https://github.com/renfeiw/repo1/issues/60#issuecomment-776094235</comment>
+			<variation>NoOptions</variation>
+			<vendor>abc</vendor>
+		</disabled>
 		<command>$(JAVA_COMMAND) -jar $(Q)$(TEST_RESROOT)$(D)renaissance-mit.jar$(Q) --json $(Q)$(REPORTDIR)$(D)db-shootout.json$(Q) db-shootout; \
 		$(TEST_STATUS)</command>
 		<!-- Issue https://github.com/renaissance-benchmarks/renaissance/issues/210 -->
