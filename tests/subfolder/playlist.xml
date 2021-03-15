@@ -3,6 +3,12 @@
 	<include>nativeTestSettings.mk</include>
 	<test>
 		<testCaseName>jdk_test</testCaseName>
+		<disabled>
+			<comment>https://github.com/renfeiw/repo1/issues/85#issuecomment-799732565</comment>
+			<variation>-Xmx1024m</variation>
+			<version>8</version>
+			<impl>openj9</impl>
+		</disabled>
 		<command>cp -R $(TEST_JDK_HOME)/ $(REPORTDIR_NQ)/testJava; \
 		$(TEST_JAVA)/bin/java -version; \
 		extattr +a $(REPORTDIR_NQ)/testJava$(LIBJ9IFA29); \
