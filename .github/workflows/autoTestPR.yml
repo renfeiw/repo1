@@ -46,15 +46,15 @@ jobs:
       - name: checkout TKG repo
         uses: actions/checkout@v2
         with:
-          repository: 'AdoptOpenJDK/TKG.git'
-          ref: 'master'
+          repository: 'renfeiw/TKG.git'
+          ref: 'testBot'
           path: 'TKG'
       - name: run script
         env:
           comment_body: ${{ github.event.comment.body }}
         run: |
           git config --list
-          python TKG/scripts/testBot/disable.py -m "$comment_body" -c "${{ github.event.comment.html_url }}" -d "$GITHUB_WORKSPACE/tests"
+          python TKG/scripts/testBot/disable.py -m "$comment_body" -c "${{ github.event.comment.html_url }}" -d "$GITHUB_WORKSPACE/tests" -cp "true"
       - name: test cannot be found
         if: failure()
         run: |
