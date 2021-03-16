@@ -20,6 +20,10 @@
 	<test>
 		<testCaseName>renaissance-akka-uct</testCaseName>
 		<disabled>
+			<comment>https://github.com/renfeiw/repo1/issues/92#issuecomment-800496491</comment>
+			<impl>openj9</impl>
+		</disabled>
+		<disabled>
 			<comment>https://github.com/AdoptOpenJDK/openjdk-tests/issues/1994#issuecomment-705633262</comment>
 		</disabled>
 		<command>$(JAVA_COMMAND) -jar $(Q)$(TEST_RESROOT)$(D)renaissance-mit.jar$(Q) --json $(Q)$(REPORTDIR)$(D)akka-uct.json$(Q) akka-uct; \
