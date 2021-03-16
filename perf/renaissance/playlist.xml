@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-  Copyright (c) 2017, 2020 IBM Corp. and others
+  Copyright (c) 2017, 2021 IBM Corp. and others
   This program and the accompanying materials are made available under
   the terms of the Eclipse Public License 2.0 which accompanies this
   distribution and is available at https://www.eclipse.org/legal/epl-2.0/
@@ -19,6 +19,10 @@
 <playlist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../TKG/playlist.xsd">
 	<test>
 		<testCaseName>renaissance-akka-uct</testCaseName>
+		<disabled>
+			<comment>https://github.com/renfeiw/repo1/issues/92#issuecomment-800516429</comment>
+			<impl>openj9</impl>
+		</disabled>
 		<disabled>
 			<comment>https://github.com/AdoptOpenJDK/openjdk-tests/issues/1994#issuecomment-705633262</comment>
 		</disabled>
